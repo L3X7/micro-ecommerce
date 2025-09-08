@@ -22,7 +22,10 @@
         <mockito.version>5.14.2</mockito.version>
         <maven-surefire.version>3.2.5</maven-surefire.version>
         <bytebuddy.version>1.17.7</bytebuddy.version>
-
+        <apache-commons.version>3.18.0</apache-commons.version>
+        <thoughtworks-xstream.version>1.4.21</thoughtworks-xstream.version>
+        <apache-httpcomponents.version>4.5.14</apache-httpcomponents.version>
+        <google-guava.version>33.4.8-jre</google-guava.version>
 
         <!-- Encoding warnings -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -34,6 +37,7 @@
         <module>user-service</module>
         <module>product-service</module>
         <module>api-gateway</module>
+        <module>discovery-server</module>
     </modules>
 
     <!-- Centralized dependency management -->
@@ -55,6 +59,24 @@
                 <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.thoughtworks.xstream</groupId>
+                <artifactId>xstream</artifactId>
+                <version>${thoughtworks-xstream.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${apache-httpcomponents.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${google-guava.version}</version>
             </dependency>
 
             <!-- Centralized JJWT versions -->
@@ -87,6 +109,12 @@
                 <artifactId>mockito-core</artifactId>
                 <version>${mockito.version}</version>
                 <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${apache-commons.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
