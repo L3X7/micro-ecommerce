@@ -42,7 +42,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         // Allow public access to registration and login endpoints
-                        .requestMatchers("/api/users/login", "/api/users/register", "/actuator/health", "/actuator/info").permitAll()
+                        .requestMatchers("/api/users/login", "/api/users/register", "/api/users/refreshToken", "/actuator/health", "/actuator/info").permitAll()
                         // Secure all other requests
                         .anyRequest().authenticated()
                 )

@@ -1,7 +1,8 @@
 package com.microecommerce.user_service.controller;
 
 import com.microecommerce.user_service.dto.LoginRequestDTO;
-import com.microecommerce.user_service.dto.LoginResponseDTO;
+import com.microecommerce.user_service.dto.AuthResponseDTO;
+import com.microecommerce.user_service.dto.RefreshTokenRequestDTO;
 import com.microecommerce.user_service.dto.UserDTO;
 import com.microecommerce.user_service.model.User;
 import com.microecommerce.user_service.service.UserService;
@@ -24,8 +25,17 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponseDTO> login(@RequestBody LoginRequestDTO loginRequestDTO) {
-        String token = userService.login(loginRequestDTO);
-        return ResponseEntity.ok(new LoginResponseDTO(token));
+    public ResponseEntity<AuthResponseDTO> login(@RequestBody LoginRequestDTO loginRequestDTO) {
+        var tokenAccess = userService.login(loginRequestDTO);
+        return ResponseEntity.ok(tokenAccess);
+    }
+
+    @PostMapping("/refreshToken")
+    public ResponseEntity<AuthResponseDTO> refreshToken(@RequestBody RefreshTokenRequestDTO body) {
+        if (body == null || body.getRefreshToken() == null) {
+            return ResponseEntity.badRequest().build();
+        }
+        var tokenAccess = userService.refreshToken(body);
+        return ResponseEntity.ok(tokenAccess);
     }
 }
